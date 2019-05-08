@@ -7,11 +7,14 @@ namespace Core.ControlSystem
     {
         public static void Move(Transform rover,Transform target,float moveSpeed)
         {
-            if (target)
-            {
-                rover.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-                rover.LookAt(target);
-            }            
+
+            float step = moveSpeed * Time.deltaTime;
+
+            if (Vector3.Distance(rover.position, target.position) < 0.001f)
+                rover.position = rover.position;
+            else if (Vector3.Distance(rover.position, target.position) > 0)
+                rover.position = Vector3.MoveTowards(rover.position, target.position, step);
+
         }
 
         public static void Rotate(Transform rover,float rotateSpeed,float yRotation)

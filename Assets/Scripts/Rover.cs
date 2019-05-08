@@ -15,13 +15,22 @@ public class Rover : MonoBehaviour
     float yRotate = 0f;
 
     [SerializeField]
+    Vector2 coordinates;
+
+    [SerializeField]
+    bool EnableCoordinates = true;
+
+    [SerializeField]
     Transform target;
 
     [SerializeField]
     float minDistance = 2f;
 
-    [SerializeField]
-    Vector2 coordinates;
+    private void Awake()
+    {
+        
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -37,6 +46,9 @@ public class Rover : MonoBehaviour
 
     protected virtual void Move()
     {
+        //Vector3 newPosition = new Vector3(coordinates.x, 0, coordinates.y);
+
+        //if (EnableCoordinates) { target.position = newPosition; }
         ControlSystem.Move(transform,target,MoveSpeed);
     } 
 
